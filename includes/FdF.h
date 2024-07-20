@@ -13,7 +13,7 @@
 #ifndef FDF_H
 # define FDF_H
 
-# include <mlx.h>
+# include "mlx.h"
 
 typedef struct s_data
 {
