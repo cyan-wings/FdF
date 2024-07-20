@@ -7,9 +7,16 @@ LIBFTINC		=	-I$(LIBFTDIR)/includes/
 LIBFTLD			=	-L$(LIBFTDIR) -lft
 LIBFT			=	$(LIBFTDIR)/libft.a
 
-MLXDIR			=	mlx
+UNAME			:=	$(shell uname)
+ifeq ($(UNAME), Linux)
+	MLXDIR		=	mlx_linux
+	MLXLD		=	-lmlx -L$(MLXDIR) -lXext -lX11 -lm -lz
+else
+	MLXDIR		=	mlx
+	MLXLD		=	-l$(MLXDIR) -framework OpenGL -framework AppKit
+endif
+
 MLXINC			=	-I$(MLXDIR)
-MLXLD			=	-l$(MLXDIR) -framework OpenGL -framework AppKit
 
 
 ##############################################
