@@ -1,23 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_math_utils.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myeow <myeow@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/15 16:11:56 by myeow             #+#    #+#             */
-/*   Updated: 2024/07/30 20:05:47 by myeow            ###   ########.fr       */
+/*   Created: 2024/07/30 20:02:38 by myeow             #+#    #+#             */
+/*   Updated: 2024/07/30 23:06:56 by myeow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#ifndef FT_MATH_UTILS_H
+# define FT_MATH_UTILS_H
 
-# include "ft_char_utils.h"
-# include "ft_mem_utils.h"
-# include "ft_string_utils.h"
-# include "ft_print_utils.h"
-# include "ft_lst_utils.h"
-# include "ft_error_utils.h"
+typedef struct s_vec_2d
+{
+	double	x;
+	double	y;
+}	t_vec2;
+
+typedef struct s_vec_3d
+{
+	double	x;
+	double	y;
+	double	z;
+}	t_vec3;
+
+double	ft_abs(double d);
+void	ft_swap(double *a, double *b);
+double	ft_floor(double d);
+double	ft_ceil(double d);
+double	ft_round(double d);
+double	ft_fractional(double d);
+double	ft_rev_fractional(double d);
 
 #endif

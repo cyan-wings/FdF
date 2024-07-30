@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   mlx_plot_pixel.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myeow <myeow@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/15 16:11:56 by myeow             #+#    #+#             */
-/*   Updated: 2024/07/30 20:05:47 by myeow            ###   ########.fr       */
+/*   Created: 2024/07/30 21:34:27 by myeow             #+#    #+#             */
+/*   Updated: 2024/07/31 00:26:22 by myeow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#include "FdF.h"
 
-# include "ft_char_utils.h"
-# include "ft_mem_utils.h"
-# include "ft_string_utils.h"
-# include "ft_print_utils.h"
-# include "ft_lst_utils.h"
-# include "ft_error_utils.h"
+/*
+ * TODO: Add checks to x and y so it doesn't segfault
+ */
+void	mlx_plot_pixel(t_data *data, int x, int y, t_color color)
+{
+	char	*dst;
 
-#endif
+	x += (data->x_res / 2) - 1;
+	y += (data->y_res / 2) - 1;
+	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+	*((unsigned int *) dst) = color.code;
+}

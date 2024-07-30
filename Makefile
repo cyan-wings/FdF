@@ -33,7 +33,9 @@ HDRINC			=	-I$(HDRDIR)
 
 SRCDIR			=	srcs/
 SRC_M			=	\
-					FdF/FdF					\
+					FdF/FdF							\
+					FdF/FdF_draw_line				\
+					mlx_utils/mlx_plot_pixel		\
 
 SRCS			=	$(addsuffix .c, $(addprefix $(SRCDIR), $(SRC_M)))
 
@@ -54,7 +56,7 @@ OBJDIRS			=	$(sort $(dir $(OBJS)))
 NAME			=	FdF
 CC				=	cc
 CFLAGS			=	-Wall -Wextra -Werror$(if $(FSANITIZE), $(FSANITIZE))
-#FSANITIZE		=	-fsanitize=address -g
+FSANITIZE		=	-fsanitize=address -g
 
 IFLAGS			=	$(HDRINC) $(LIBFTINC) $(MLXINC)
 LFLAGS			=	$(LIBFTLD) $(MLXLD)
