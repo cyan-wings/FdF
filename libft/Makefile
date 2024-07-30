@@ -128,6 +128,18 @@ PRNTFSRC		=		\
 
 PRNTFSRCS		=	$(addprefix $(PRNTFDIR)$(FT_PRE), $(PRNTFSRC))
 
+MATHDIR			=	$(SRCDIR)$(FT_PRE)math_utils/
+MATHSRC			=		\
+						abs					\
+						swap				\
+						floor				\
+						ceil				\
+						round				\
+						fractional			\
+						rev_fractional		\
+
+MATHSRCS		=	$(addprefix $(MATHDIR)$(FT_PRE), $(MATHSRC))
+
 
 SRC_AGG			=	\
 					$(CHARSRCS)		\
@@ -138,6 +150,7 @@ SRC_AGG			=	\
 					$(ERRSRCS)		\
 					$(GNLSRCS)		\
 					$(PRNTFSRCS)	\
+					$(MATHSRCS)		\
 
 SRCS			=	$(addsuffix .c, $(SRC_AGG))
 
