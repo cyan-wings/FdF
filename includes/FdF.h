@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   FdF.h                                              :+:      :+:    :+:   */
+/*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myeow <myeow@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 16:48:11 by myeow             #+#    #+#             */
-/*   Updated: 2024/08/03 22:31:01 by myeow            ###   ########.fr       */
+/*   Updated: 2024/08/05 21:19:28 by myeow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,6 @@ typedef struct s_draw_line
 
 void	mlx_plot_pixel(t_data *data, int x, int y, t_color color);
 void	fdf_draw_line(t_data *data, t_vec2 *a, t_vec2 *b);
+int		fdf_parse(const char *filename);
 
 #endif

@@ -11,6 +11,7 @@ CHARSRC			=		\
 						isdigit		\
 						isprint		\
 						isspace		\
+						ishex		\
 
 CHARSRCS		=	$(addprefix $(CHARDIR)$(FT_PRE), $(CHARSRC))
 

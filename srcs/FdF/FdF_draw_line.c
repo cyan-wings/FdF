@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   FdF_draw_line.c                                    :+:      :+:    :+:   */
+/*   fdf_draw_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myeow <myeow@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 19:52:34 by myeow             #+#    #+#             */
-/*   Updated: 2024/08/03 22:30:37 by myeow            ###   ########.fr       */
+/*   Updated: 2024/08/05 19:08:35 by myeow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "FdF.h"
+#include "fdf.h"
 #include <stdio.h>
 
 static void	plot(t_data *data, int x, int y, double intensity)

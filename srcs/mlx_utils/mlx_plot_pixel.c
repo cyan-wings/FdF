@@ -6,11 +6,11 @@
 /*   By: myeow <myeow@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 21:34:27 by myeow             #+#    #+#             */
-/*   Updated: 2024/08/03 22:24:14 by myeow            ###   ########.fr       */
+/*   Updated: 2024/08/05 19:09:09 by myeow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "FdF.h"
+#include "fdf.h"
 
 /*
  * If the resolution value is odd, the rightmost column of pixels (x) and 

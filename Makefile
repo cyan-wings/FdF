@@ -33,8 +33,9 @@ HDRINC			=	-I$(HDRDIR)
 
 SRCDIR			=	srcs/
 SRC_M			=	\
-					FdF/FdF							\
-					FdF/FdF_draw_line				\
+					fdf/fdf							\
+					fdf/fdf_parse					\
+					fdf/fdf_draw_line				\
 					mlx_utils/mlx_plot_pixel		\
 
 SRCS			=	$(addsuffix .c, $(addprefix $(SRCDIR), $(SRC_M)))
@@ -67,7 +68,7 @@ MAKE_C			=	$(MAKE) -C
 
 UP				=	\033[1A
 FLUSH			=	\033[2K
-
+MAPS			=	specs/test_maps/
 
 
 ##############################################
@@ -101,4 +102,7 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all bonus clean fclean re
+run:
+	for f in $$(ls $(MAPS)); do (./$(NAME) $(MAPS)$$f); done
+
+.PHONY: all bonus clean fclean re run
