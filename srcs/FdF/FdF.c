@@ -6,7 +6,7 @@
 /*   By: myeow <myeow@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 16:22:23 by myeow             #+#    #+#             */
-/*   Updated: 2024/08/05 23:35:14 by myeow            ###   ########.fr       */
+/*   Updated: 2024/08/06 19:53:47 by myeow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "ft_print_utils.h"
 #include <unistd.h>
 
+/*
 static void	mark_origin(t_data *data)
 {
 	t_color	color;
@@ -44,7 +45,7 @@ static void	test_line(t_data *data)
 		i += 1;
 	}
 }
-
+*/
 /*
 	t_vec2	c = (t_vec2) {-600, -600};
 	t_vec2	d = (t_vec2) {600, 600};
@@ -87,13 +88,15 @@ int	main(int argc, char **argv)
 	void	*mlx;
 	void	*mlx_win;
 	t_data	img;
+	t_map	map_info;
 
 	check_params(argc, argv);
-	if (fdf_parse(argv[1]))
-		printf("Success: %s\n", argv[1]);
-	else
+	map_info = (t_map) {0};
+	if (!fdf_parse(argv[1], &map_info))
 		printf("Fail: %s\n", argv[1]);
+	init_map(&map_info);
 	return (0);
+	/*
 	img.x_res = 1920;
 	img.y_res = 1080;
 	img.x_origin_offset = img.x_res / 2;
@@ -101,10 +104,12 @@ int	main(int argc, char **argv)
 	mlx = mlx_init();
 	mlx_win = mlx_new_window(mlx, img.x_res, img.y_res, "Hello World!");
 	img.img = mlx_new_image(mlx, img.x_res, img.y_res);
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, \
+	img.addr = mlx_get_data_
+		addr(img.img, &img.bits_per_pixel, \
 			&img.line_length, &img.endian);
 	mark_origin(&img);
 	test_line(&img);
 	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
 	mlx_loop(mlx);
+	*/
 }
