@@ -6,7 +6,7 @@
 /*   By: myeow <myeow@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 19:09:47 by myeow             #+#    #+#             */
-/*   Updated: 2024/08/05 23:36:15 by myeow            ###   ########.fr       */
+/*   Updated: 2024/08/06 19:32:30 by myeow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,20 +117,16 @@ static void	get_row_col(int fd, int *row, int *col)
 	ft_memdel((void **) &line);
 }
 
-int	fdf_parse(const char *filename)
+int	fdf_parse(const char *filename, t_map *map)
 {
 	int	fd;
-	int	row;
-	int	col;
 
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
 		return (0);
-	row = 0;
-	col = 0;
-	get_row_col(fd, &row, &col);
-	printf("row: %d, col: %d\n", row, col);
-	if (!row)
+	get_row_col(fd, &map->width, &map->length);
+	printf("row: %d, col: %d\n", &map->width, &map->length);
+	if (!map->width)
 		return (0);
 	return (1);
 }

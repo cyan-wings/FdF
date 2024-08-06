@@ -34,6 +34,7 @@ HDRINC			=	-I$(HDRDIR)
 SRCDIR			=	srcs/
 SRC_M			=	\
 					fdf/fdf							\
+					fdf/fdf_error					\
 					fdf/fdf_parse					\
 					fdf/fdf_draw_line				\
 					mlx_utils/mlx_plot_pixel		\
