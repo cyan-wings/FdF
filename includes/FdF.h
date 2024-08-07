@@ -6,7 +6,7 @@
 /*   By: myeow <myeow@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 16:48:11 by myeow             #+#    #+#             */
-/*   Updated: 2024/08/06 20:47:04 by myeow            ###   ########.fr       */
+/*   Updated: 2024/08/07 21:25:46 by myeow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,11 @@ typedef struct s_map
 	int		z_min;
 }			t_map;
 
-void	fdf_error(char *err_msg, int exit_status);
+void	fdf_error_exit(char *err_msg, int exit_status);
 void	mlx_plot_pixel(t_data *data, int x, int y, t_color color);
 void	fdf_draw_line(t_data *data, t_vec2 *a, t_vec2 *b);
-int		fdf_parse(const char *filename);
+int		fdf_parse(const char *filename, t_map *map);
+void	fdf_init_map(const char *filename, t_map *map);
+void	fdf_print_map(t_map *map);
 
 #endif

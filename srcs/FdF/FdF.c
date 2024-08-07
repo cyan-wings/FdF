@@ -6,7 +6,7 @@
 /*   By: myeow <myeow@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 16:22:23 by myeow             #+#    #+#             */
-/*   Updated: 2024/08/06 19:53:47 by myeow            ###   ########.fr       */
+/*   Updated: 2024/08/07 21:58:12 by myeow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,45 +58,40 @@ static void	test_line(t_data *data)
 	data->curr_color = (t_color) {.t_trgb.b = 255};
 	FdF_draw_line(data, &e, &f);
 */
-static int	check_file(const char *filename)
+static void	check_file(const char *filename)
 {
 	int	fd;
 
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
-	{
-		ft_putendl_fd("Invalid file.", 2);
-		return (0);
-	}
+		fdf_error_exit("File doesn't exist.", 0);
 	close(fd);
-	return (1);
 }
 
-static int	check_params(int argc, char **argv)
+static void	check_params(int argc, char **argv)
 {
 	if (argc != 2)
-	{
-		ft_putendl_fd("Usage: ./FdF map.fdf", 2);
-		return (0);
-	}
-	return (check_file(argv[1]));
+		fdf_error_exit("Usage: ./FdF map.fdf", 0);
+	check_file(argv[1]);
 }
 
 #include <stdio.h>
 int	main(int argc, char **argv)
 {
-	void	*mlx;
-	void	*mlx_win;
-	t_data	img;
-	t_map	map_info;
+	t_map	map;
 
 	check_params(argc, argv);
-	map_info = (t_map) {0};
-	if (!fdf_parse(argv[1], &map_info))
-		printf("Fail: %s\n", argv[1]);
-	init_map(&map_info);
+	map = (t_map) {0};
+	if (!fdf_parse(argv[1], &map))
+		fdf_error_exit("Parse error.", 0);
+	fdf_init_map(argv[1], &map);
+	fdf_print_map(&map);
+	printf("Success: %s\n", argv[1]);
 	return (0);
 	/*
+	 *	void	*mlx;
+	void	*mlx_win;
+	t_data	img;
 	img.x_res = 1920;
 	img.y_res = 1080;
 	img.x_origin_offset = img.x_res / 2;
