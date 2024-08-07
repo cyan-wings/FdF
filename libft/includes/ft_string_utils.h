@@ -6,7 +6,7 @@
 /*   By: myeow <myeow@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 16:50:19 by myeow             #+#    #+#             */
-/*   Updated: 2024/05/17 17:50:15 by myeow            ###   ########.fr       */
+/*   Updated: 2024/08/07 20:05:29 by myeow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stddef.h>
 
 int		ft_atoi(const char *str);
+int		ft_atoi_base(char *str, char *base);
 void	ft_free_ft_split(char **str_array);
 char	*ft_itoa(int n);
 char	**ft_split(char const *s, char c);

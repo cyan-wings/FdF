@@ -35,6 +35,7 @@ MEMSRCS			=	$(addprefix $(MEMDIR)$(FT_PRE), $(MEMSRC))
 STRDIR			=	$(SRCDIR)$(FT_PRE)string_utils/
 STRSRC			=		\
 						atoi			\
+						atoi_base		\
 						itoa			\
 						free_ft_split	\
 						split			\
@@ -71,6 +72,7 @@ PRNTSRC			=		\
 						putstr_fd		\
 						putendl_fd		\
 						putnbr_fd		\
+						putnbr_base_fd	\
 						
 PRNTSRCS		=	$(addprefix $(PRNTDIR)$(FT_PRE), $(PRNTSRC))
 

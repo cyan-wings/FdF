@@ -6,14 +6,14 @@
 /*   By: myeow <myeow@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 19:09:47 by myeow             #+#    #+#             */
-/*   Updated: 2024/08/06 19:32:30 by myeow            ###   ########.fr       */
+/*   Updated: 2024/08/07 19:02:48 by myeow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "get_next_line.h"
+#include "fdf.h"
 #include <fcntl.h>
-#include <stdio.h>
+#include "get_next_line.h"
+#include "libft.h"
 
 static int	is_valid_color(char *temp)
 {
@@ -89,7 +89,7 @@ static int	get_row_col_helper(int fd, char **line, int row, int *col)
 	return (1);
 }
 
-static void	get_row_col(int fd, int *row, int *col)
+static int	get_row_col(int fd, int *row, int *col)
 {
 	char	*line;
 	char	*save_ptr;
@@ -98,35 +98,34 @@ static void	get_row_col(int fd, int *row, int *col)
 	line = 0;
 	line = get_next_line(fd);
 	if (!line)
-		return ;
+		return (0);
 	save_ptr = 0;
 	temp = ft_strtok_r(line, " \n", &save_ptr);
 	while (temp)
 	{
 		if (!is_valid_number(temp))
-		{
-			*row = 0;
-			return ;
-		}
+			return (0);
 		++*row;
 		temp = ft_strtok_r(0, " \n", &save_ptr);
 	}
 	++*col;
 	if (!get_row_col_helper(fd, &line, *row, col))
-		*row = 0;
+		return (0);
 	ft_memdel((void **) &line);
+	return (1);
 }
 
 int	fdf_parse(const char *filename, t_map *map)
 {
 	int	fd;
+	int	status;
 
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
 		return (0);
-	get_row_col(fd, &map->width, &map->length);
-	printf("row: %d, col: %d\n", &map->width, &map->length);
-	if (!map->width)
+	status = get_row_col(fd, &map->width, &map->length);
+	close(fd);
+	if (!status)
 		return (0);
 	return (1);
 }
