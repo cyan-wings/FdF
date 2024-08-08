@@ -140,6 +140,9 @@ MATHSRC			=		\
 						round				\
 						fractional			\
 						rev_fractional		\
+						quatnew				\
+						quatnew_id			\
+						quatdup				\
 
 MATHSRCS		=	$(addprefix $(MATHDIR)$(FT_PRE), $(MATHSRC))
 
