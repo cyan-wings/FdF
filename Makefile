@@ -60,7 +60,7 @@ OBJDIRS			=	$(sort $(dir $(OBJS)))
 NAME			=	FdF
 CC				=	cc
 CFLAGS			=	-Wall -Wextra -Werror$(if $(FSANITIZE), $(FSANITIZE))
-FSANITIZE		=	-fsanitize=address -g
+#FSANITIZE		=	-fsanitize=address -g
 
 IFLAGS			=	$(HDRINC) $(LIBFTINC) $(MLXINC)
 LFLAGS			=	$(LIBFTLD) $(MLXLD)

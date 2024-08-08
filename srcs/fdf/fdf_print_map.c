@@ -15,11 +15,9 @@
 
 void	fdf_print_map(t_map *map)
 {
-	t_point	***grid;
 	int		i;
 	int		j;
 
-	grid = map->map;
 	i = -1;
 	while (++i < map->length)
 	{
