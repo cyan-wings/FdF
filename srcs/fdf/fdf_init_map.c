@@ -6,13 +6,14 @@
 /*   By: myeow <myeow@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 19:53:57 by myeow             #+#    #+#             */
-/*   Updated: 2024/08/07 21:41:43 by myeow            ###   ########.fr       */
+/*   Updated: 2024/08/08 21:55:18 by myeow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include <fcntl.h>
 #include "libft.h"
+#include "limits.h"
 #include "get_next_line.h"
 
 static void	alloc_map_helper(t_map *map, t_point ***grid)
@@ -81,6 +82,7 @@ static void	fdf_init_map_helper(t_map *map, char *line, int *l)
 	char	*save_ptr;
 	char	*temp;
 	int		w;
+	int		z_value;
 
 	save_ptr = 0;
 	temp = 0;
@@ -88,7 +90,12 @@ static void	fdf_init_map_helper(t_map *map, char *line, int *l)
 	w = 0;
 	while (temp)
 	{
-		((map->map)[*l][w])->z = ft_atoi(ft_strtok(temp, ","));
+		z_value = ft_atoi(ft_strtok(temp, ","));
+		map->map[*l][w]->z = z_value;
+		if (z_value > map->z_max)
+			map->z_max = z_value;
+		if (z_value < map->z_min)
+			map->z_min = z_value;
 		process_color(ft_strtok(0, ","), (map->map)[*l][w]);
 		++w;
 		temp = ft_strtok_r(0, " \n", &save_ptr);
@@ -106,6 +113,8 @@ void	fdf_init_map(const char *filename, t_map *map)
 	if (fd == -1)
 		fdf_error_exit("Cannot open file when initiating map", 1);
 	alloc_map(map);
+	map->z_max = INT_MIN;
+	map->z_min = INT_MAX;
 	line = 0;
 	line = get_next_line(fd);
 	l = 0;
@@ -118,4 +127,5 @@ void	fdf_init_map(const char *filename, t_map *map)
 	close(fd);
 	ft_memdel((void **) &line);
 	printf("Success in initialising map: %s\n", filename);
+	printf("Min Z: %d, Max Z: %d\n", map->z_min, map->z_max);
 }

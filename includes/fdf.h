@@ -6,7 +6,7 @@
 /*   By: myeow <myeow@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 16:48:11 by myeow             #+#    #+#             */
-/*   Updated: 2024/08/07 21:25:46 by myeow            ###   ########.fr       */
+/*   Updated: 2024/08/08 23:13:06 by myeow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,12 @@ typedef union s_color
 	}					t_trgb;
 }					t_color;
 
-typedef struct s_data
+typedef struct s_mlx_vars
 {
 	int		x_res;
 	int		y_res;
+	void	*mlx;
+	void	*mlx_win;
 	void	*img;
 	char	*addr;
 	int		bits_per_pixel;
@@ -40,7 +42,7 @@ typedef struct s_data
 	int		x_origin_offset;
 	int		y_origin_offset;
 	t_color	curr_color;
-}			t_data;
+}			t_mlx_vars;
 
 typedef struct s_draw_line
 {
