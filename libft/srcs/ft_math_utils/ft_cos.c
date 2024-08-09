@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_quatdup.c                                       :+:      :+:    :+:   */
+/*   ft_cos.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myeow <myeow@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/09 00:25:20 by myeow             #+#    #+#             */
-/*   Updated: 2024/08/09 00:26:40 by myeow            ###   ########.fr       */
+/*   Created: 2024/08/09 23:19:19 by myeow             #+#    #+#             */
+/*   Updated: 2024/08/09 23:52:18 by myeow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_math_utils.h"
 
-t_quat	ft_quatdup(t_quat *q)
+double	ft_cos(double x)
 {
-	return (ft_quatnew(q->w, q->v.x, q->v.y, q->v.z));
+	return (ft_sin(x - PI / 2.0));
 }

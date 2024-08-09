@@ -140,9 +140,18 @@ MATHSRC			=		\
 						round				\
 						fractional			\
 						rev_fractional		\
-						quatnew				\
-						quatnew_id			\
-						quatdup				\
+						fmod				\
+						sqrt				\
+						sin					\
+						cos					\
+						tan					\
+						asin				\
+						acos				\
+						atan				\
+						quatset				\
+						quatset_id			\
+						quatcpy				\
+						quat_isequal		\
 
 MATHSRCS		=	$(addprefix $(MATHDIR)$(FT_PRE), $(MATHSRC))
 
