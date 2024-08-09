@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_quatnew.c                                       :+:      :+:    :+:   */
+/*   ft_quatset.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myeow <myeow@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/08 23:51:14 by myeow             #+#    #+#             */
-/*   Updated: 2024/08/09 00:27:41 by myeow            ###   ########.fr       */
+/*   Created: 2024/08/09 21:45:45 by myeow             #+#    #+#             */
+/*   Updated: 2024/08/09 21:57:43 by myeow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_math_utils.h"
 
-t_quat	ft_quatnew(double w, double x, double y, double z)
+void	ft_quatset(double w, t_vec3 v, t_quat *out)
 {
-	t_quat	q;
-
-	q = (t_quat){.w = w, .v.x = x, .v.y = y, .v.z = z};
-	return (q);
+	if (!out)
+		return ;
+	out->w = w;
+	out->v = v;
 }

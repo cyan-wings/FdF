@@ -1,18 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_quatnew_id.c                                    :+:      :+:    :+:   */
+/*   ft_quat_from_axis_angle.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myeow <myeow@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/08 23:54:20 by myeow             #+#    #+#             */
-/*   Updated: 2024/08/09 00:12:16 by myeow            ###   ########.fr       */
+/*   Created: 2024/08/09 23:15:19 by myeow             #+#    #+#             */
+/*   Updated: 2024/08/10 00:20:53 by myeow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_math_utils.h"
-
-t_quat	ft_quatnew_id(void)
+void	ft_quat_from_axis_angle(t_vec3 *axis, double angle, t_quat *out)
 {
-	return (ft_quatnew(1, 0, 0, 0));
+	double	c;
+
+	if (!out)
+		return ;
+	out->w = ft_cos(angle / 2.0);
+	c = ft_sin (angle / 2.0);
+	out->v.x = c * axis->x;
+	out->v.y = c * axis->y;
+	out->v.z = c * axis->z;
 }
