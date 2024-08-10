@@ -1,43 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_asin.c                                          :+:      :+:    :+:   */
+/*   ft_power.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myeow <myeow@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/10 00:48:44 by myeow             #+#    #+#             */
-/*   Updated: 2024/08/11 01:50:07 by myeow            ###   ########.fr       */
+/*   Created: 2024/08/10 22:31:01 by myeow             #+#    #+#             */
+/*   Updated: 2024/08/10 22:39:25 by myeow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	ft_putendl_fd(char *s, int fd);
-
 double	ft_abs(double d);
 
-double	ft_sin(double r);
-
-double	ft_cos(double r);
-
-double	ft_asin(double x)
+double	ft_power(double x, int p)
 {
-	double			y;
-	int				i;
-	double			y_prime;
-	const double	tolerance = 1e-10;
+	double			result;
+	unsigned int	p_abs;
 
-	if (x < -1.0 || x > 1.0)
-	{
-		ft_putendl_fd("Undefined.", 2);
+	if (x == 0 && p < 0)
 		return (0);
-	}
-	y = x;
-	i = -1;
-	while (++i < 100)
+	result = 1.0;
+	p_abs = ft_abs(p);
+	while (p_abs)
 	{
-		y_prime = y - ((ft_sin(y) - x) / ft_cos(y));
-		if (ft_abs(y_prime - y) < tolerance)
-			return (y_prime);
-		y = y_prime;
+		if (p_abs % 2 == 1)
+			result *= x;
+		base *= base;
+		p_abs /= 2;
 	}
-	return (y);
+	if (p < 0)
+		result = 1.0 / result;
+	return (result);
 }
