@@ -149,6 +149,7 @@ MATHSRC			=		\
 						asin				\
 						acos				\
 						atan				\
+						atan2				\
 						quatset				\
 						quatset_id			\
 						quatcpy				\

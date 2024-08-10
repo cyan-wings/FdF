@@ -1,27 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_acos.c                                          :+:      :+:    :+:   */
+/*   ft_factorial.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myeow <myeow@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/10 00:47:32 by myeow             #+#    #+#             */
-/*   Updated: 2024/08/11 01:50:32 by myeow            ###   ########.fr       */
+/*   Created: 2024/08/10 22:24:31 by myeow             #+#    #+#             */
+/*   Updated: 2024/08/10 22:30:12 by myeow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_math_utils.h"
+#define FACTORIAL_MAX 20
 
-void	ft_putendl_fd(char *s, int fd);
-
-double	ft_asin(double x);
-
-double	ft_acos(double x)
+unsigned long long	ft_factorial(int x)
 {
-	if (x < -1.0 || x > 1.0)
-	{
-		ft_putendl_fd("Undefined.", 2);
+	static unsigned long long	factorial_cache[FACTORIAL_MAX + 1] = {1};
+	unsigned long long			dst;
+
+	if (x < 0)
 		return (0);
+	if (x == 0)
+		return (1);
+	if (x <= FACTORIAL_MAX)
+	{
+		if (factorial_cache[x] == 0)
+			factorial_cache[x] = x * ft_factorial(x - 1);
+		return (factorial_cache[x]);
 	}
-	return (PI / 2 - ft_asin(x));
+	dst = 1;
+	while (x > 1)
+		dst *= num--;
+	return (dst);
 }
