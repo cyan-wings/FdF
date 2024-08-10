@@ -135,6 +135,7 @@ MATHDIR			=	$(SRCDIR)$(FT_PRE)math_utils/
 MATHSRC			=		\
 						abs					\
 						swap				\
+						modf				\
 						floor				\
 						ceil				\
 						round				\

@@ -6,7 +6,7 @@
 /*   By: myeow <myeow@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 20:15:52 by myeow             #+#    #+#             */
-/*   Updated: 2024/07/30 20:18:01 by myeow            ###   ########.fr       */
+/*   Updated: 2024/08/10 14:40:29 by myeow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@ void	ft_swap(double *a, double *b)
 {
 	double	temp;
 
+	if (!a || !b)
+		return ;
 	temp = *a;
 	*a = *b;
 	*b = temp;

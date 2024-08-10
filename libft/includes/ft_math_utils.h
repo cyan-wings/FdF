@@ -6,7 +6,7 @@
 /*   By: myeow <myeow@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 20:02:38 by myeow             #+#    #+#             */
-/*   Updated: 2024/08/10 00:46:59 by myeow            ###   ########.fr       */
+/*   Updated: 2024/08/10 16:06:48 by myeow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,14 @@
 
 # ifndef PI
 #  define PI 3.14159265358979323846
+# endif
+
+# ifndef PI_2
+#  define PI_2 1.57079632679489661923
+# endif
+
+# ifndef PI_4
+#  define PI_4 0.78539816339744830962
 # endif
 
 # ifndef QUAT_EPS
@@ -50,16 +58,22 @@ typedef union s_conv
 
 double	ft_abs(double d);
 void	ft_swap(double *a, double *b);
+double	ft_modf(double d, double *i);
 double	ft_floor(double d);
 double	ft_ceil(double d);
 double	ft_round(double d);
 double	ft_fractional(double d);
 double	ft_rev_fractional(double d);
 double	ft_fmod(double x, double y);
+double	ft_sqrt_inverse_fast(double x);
+double	ft_sqrt_fast(double x);
 double	ft_sqrt(double x);
 double	ft_sin(double x);
 double	ft_cos(double x);
+double	ft_tan(double x);
+double	ft_asin(double x);
 double	ft_acos(double x);
+double	ft_atan(double x);
 
 //QUATERNION_UTILS
 void	ft_quatset(double w, t_vec3 v, t_quat *out);
