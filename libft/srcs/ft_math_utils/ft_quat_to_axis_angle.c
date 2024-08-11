@@ -6,30 +6,41 @@
 /*   By: myeow <myeow@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 00:14:30 by myeow             #+#    #+#             */
-/*   Updated: 2024/08/10 00:45:42 by myeow            ###   ########.fr       */
+/*   Updated: 2024/08/11 21:47:19 by myeow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_math_utils.h"
 
+void	ft_putendl_fd(char *s, int fd);
+
+/*
+ * Quarternion doesn't need prenormalisation.
+ */
 double	ft_quat_to_axis_angle(t_quat *q, t_vec3 *out)
 {
-	double	angle;
-	double	divider;
+	double			r;
+	double			s;
+	const double	threshold = 1e-6;
 
 	if (!q || !out)
-		return (0);
-	angle = 2.0 * ft_acos(q->w);
-	divider = ft_sqrt(1.0 - q->w * q->w);
-
-    if(divider != 0.0) {
-        out.x = q->v.x / divider;
-        out.y = q->v.y / divider;
-        out.z = q->v.z / divider;
-    } else {
-        out.x = 1;
-        out.y = 0;
-        out.z = 0;
-    }
-    return (angle);
+	{
+		ft_putendl_fd("Null pointer.", 2);
+		return (0.0);
+	}
+	ft_quat_normalise(q);
+	r = 2 * ft_acos(q->w);
+	s = ft_sqrt(1 - q->w * q->w);
+	if (s < threshold)
+	{
+		ft_putendl_fd("s below threshold.", 1);
+		out->x = 0;
+		out->y = 0;
+		out->z = 0;
+		return (r);
+	}
+	out->x = q->v.x / s;
+	out->y = q->v.y / s;
+	out->z = q->v.z / s;
+	return (r);
 }
