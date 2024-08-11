@@ -73,6 +73,7 @@ PRNTSRC			=		\
 						putendl_fd		\
 						putnbr_fd		\
 						putnbr_base_fd	\
+						putdbl_fd		\
 						
 PRNTSRCS		=	$(addprefix $(PRNTDIR)$(FT_PRE), $(PRNTSRC))
 
@@ -133,27 +134,34 @@ PRNTFSRCS		=	$(addprefix $(PRNTFDIR)$(FT_PRE), $(PRNTFSRC))
 
 MATHDIR			=	$(SRCDIR)$(FT_PRE)math_utils/
 MATHSRC			=		\
-						abs					\
-						swap				\
-						modf				\
-						floor				\
-						ceil				\
-						round				\
-						fractional			\
-						rev_fractional		\
-						fmod				\
-						sqrt				\
-						sin					\
-						cos					\
-						tan					\
-						asin				\
-						acos				\
-						atan				\
-						atan2				\
-						quatset				\
-						quatset_id			\
-						quatcpy				\
-						quat_isequal		\
+						abs							\
+						swap						\
+						modf						\
+						floor						\
+						ceil						\
+						round						\
+						fractional					\
+						rev_fractional				\
+						fmod						\
+						sqrt						\
+						sin							\
+						cos							\
+						tan							\
+						asin						\
+						acos						\
+						atan						\
+						atan2						\
+						quatset						\
+						quatset_id					\
+						quatcpy						\
+						quat_isequal				\
+						quat_from_axis_angle		\
+						quat_from_xrotation			\
+						quat_from_yrotation			\
+						quat_from_zrotation			\
+						quatget_magnitude			\
+						quat_normalise				\
+						quat_to_axis_angle			\
 
 MATHSRCS		=	$(addprefix $(MATHDIR)$(FT_PRE), $(MATHSRC))
 
