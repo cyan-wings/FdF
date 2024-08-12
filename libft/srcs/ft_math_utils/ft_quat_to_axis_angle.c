@@ -6,7 +6,7 @@
 /*   By: myeow <myeow@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 00:14:30 by myeow             #+#    #+#             */
-/*   Updated: 2024/08/11 21:47:19 by myeow            ###   ########.fr       */
+/*   Updated: 2024/08/12 15:55:50 by myeow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 void	ft_putendl_fd(char *s, int fd);
 
 /*
- * Quarternion doesn't need prenormalisation.
+ * Pre-normalisation of quarternions are done in this function.
+ * Might remove pre-normalisation.
  */
 double	ft_quat_to_axis_angle(t_quat *q, t_vec3 *out)
 {

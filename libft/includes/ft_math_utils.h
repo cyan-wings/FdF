@@ -6,7 +6,7 @@
 /*   By: myeow <myeow@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 20:02:38 by myeow             #+#    #+#             */
-/*   Updated: 2024/08/11 21:46:47 by myeow            ###   ########.fr       */
+/*   Updated: 2024/08/12 19:42:05 by myeow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ typedef union s_conv
 }				t_conv;
 
 double				ft_abs(double d);
+double				ft_copysign(double x, double y);
 void				ft_swap(double *a, double *b);
 double				ft_modf(double d, double *i);
 double				ft_floor(double d);
@@ -101,5 +102,12 @@ void				ft_quat_from_zrotation(double r, t_quat *out);
 double				ft_quatget_magnitude(t_quat *q);
 void				ft_quat_normalise(t_quat *out);
 double				ft_quat_to_axis_angle(t_quat *q, t_vec3 *out);
+void				ft_quat_from_euler_zyx(t_vec3 *v, t_quat *out);
+void				ft_quat_to_euler_zyx(t_quat *q, t_vec3 *out);
+void				ft_quat_conjugate(t_quat *q, t_quat *out);
+void				ft_quat_mult(t_quat *q1, t_quat *q2, t_quat *out);
+void				ft_quat_rotate(t_vec3 *v, t_quat *q, t_vec3 *out);
+void				ft_quat_slerp(t_quat *q1, t_quat *q2, double t, \
+		t_quat *out);
 
 #endif
