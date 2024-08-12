@@ -135,6 +135,7 @@ PRNTFSRCS		=	$(addprefix $(PRNTFDIR)$(FT_PRE), $(PRNTFSRC))
 MATHDIR			=	$(SRCDIR)$(FT_PRE)math_utils/
 MATHSRC			=		\
 						abs							\
+						copysign					\
 						swap						\
 						modf						\
 						floor						\
@@ -155,6 +156,7 @@ MATHSRC			=		\
 						quatset_id					\
 						quatcpy						\
 						quat_isequal				\
+						quat_print					\
 						quat_from_axis_angle		\
 						quat_from_xrotation			\
 						quat_from_yrotation			\
@@ -162,6 +164,12 @@ MATHSRC			=		\
 						quatget_magnitude			\
 						quat_normalise				\
 						quat_to_axis_angle			\
+						quat_from_euler_zyx			\
+						quat_to_euler_zyx			\
+						quat_conjugate				\
+						quat_mult					\
+						quat_rotate					\
+						quat_slerp					\
 
 MATHSRCS		=	$(addprefix $(MATHDIR)$(FT_PRE), $(MATHSRC))
 
