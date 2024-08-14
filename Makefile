@@ -36,12 +36,14 @@ SRC_M			=	\
 					fdf/fdf							\
 					fdf/fdf_error_exit				\
 					fdf/fdf_parse					\
-					fdf/fdf_init_map				\
-					fdf/fdf_print_map				\
+					fdf_map/fdf_map_init			\
+					fdf_map/fdf_map_init_rb_color	\
+					fdf_map/fdf_map_print			\
 					fdf_hooks/fdf_hooks_key			\
 					fdf_hooks/fdf_hooks_exit		\
 					fdf_draw/fdf_draw_plot_pixel	\
 					fdf_draw/fdf_draw_line			\
+					fdf_draw/fdf_draw_menu			\
 					fdf_draw/fdf_draw_image			\
 
 SRCS			=	$(addsuffix .c, $(addprefix $(SRCDIR), $(SRC_M)))

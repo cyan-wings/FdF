@@ -6,7 +6,7 @@
 /*   By: myeow <myeow@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 16:48:11 by myeow             #+#    #+#             */
-/*   Updated: 2024/08/14 18:40:28 by myeow            ###   ########.fr       */
+/*   Updated: 2024/08/15 01:15:00 by myeow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@ typedef struct s_mlx_vars
 	int		y_res;
 	void	*mlx;
 	void	*mlx_win;
-	int		x_origin_offset;
-	int		y_origin_offset;
 }			t_mlx_vars;
 
 /*
@@ -69,6 +67,9 @@ typedef struct s_image_data
 	int		pxl_bit_size;
 	int		line_len;
 	int		endian;
+	int		x_origin_offset;
+	int		y_origin_offset;
+	int		curr_color;
 }			t_img;
 
 typedef struct s_draw_line
@@ -84,23 +85,24 @@ typedef struct s_draw_line
 typedef struct s_fdf
 {
 	t_map	*map;
-	t_image	*img;
+	t_img	*img;
 	char	*addr;
 	t_quat	orientation;
-}
+}			t_fdf;
 
 void	fdf_error_exit(char *err_msg, int exit_status);
 int		fdf_parse(const char *filename, t_map *map);
-void	fdf_init_map(const char *filename, t_map *map);
-void	fdf_print_map(t_map *map);
+
+//MAP
+void	fdf_map_init(const char *filename, t_map *map);
+void	fdf_map_print(t_map *map);
 
 //HOOKS
 int		fdf_hooks_key(int code, t_mlx_vars *vars);
 int		fdf_hooks_exit(t_mlx_vars *vars);
 
 //DRAW
-void	fdf_draw_plot_pixel(t_mlx_vars *vars, int x, int y, int color);
-void	fdf_draw_line(t_mlx_vars *vars, t_vec2 *a, t_vec2 *b);
+void	fdf_draw_line(t_img *img, t_vec2 *a, t_vec2 *b);
 void	fdf_draw_image(t_mlx_vars *vars, t_img *data);
 
 #endif

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf_init_map.c                                     :+:      :+:    :+:   */
+/*   fdf_map_init.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myeow <myeow@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/06 19:53:57 by myeow             #+#    #+#             */
-/*   Updated: 2024/08/08 21:55:18 by myeow            ###   ########.fr       */
+/*   Created: 2024/08/15 00:16:26 by myeow             #+#    #+#             */
+/*   Updated: 2024/08/15 00:24:20 by myeow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ static void	process_color(char *hex_code, t_point *point)
 		else
 			buf[i] = '0';
 	}
-	point->color.code = ft_atoi_base(buf, "0123456789ABCDEF");
+	point->color = ft_atoi_base(buf, "0123456789ABCDEF");
 	ft_memdel((void **) &buf);
 }
 
@@ -102,8 +102,10 @@ static void	fdf_init_map_helper(t_map *map, char *line, int *l)
 	}
 }
 
+void	fdf_map_init_rb_color(t_map *map);
+
 #include <stdio.h>
-void	fdf_init_map(const char *filename, t_map *map)
+void	fdf_map_init(const char *filename, t_map *map)
 {
 	int		fd;
 	char	*line;
@@ -126,6 +128,7 @@ void	fdf_init_map(const char *filename, t_map *map)
 	}
 	close(fd);
 	ft_memdel((void **) &line);
+	fdf_map_init_rb_color(map);
 	printf("Success in initialising map: %s\n", filename);
 	printf("Min Z: %d, Max Z: %d\n", map->z_min, map->z_max);
 }

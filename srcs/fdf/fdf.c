@@ -6,7 +6,7 @@
 /*   By: myeow <myeow@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 16:22:23 by myeow             #+#    #+#             */
-/*   Updated: 2024/08/14 18:16:17 by myeow            ###   ########.fr       */
+/*   Updated: 2024/08/15 01:07:10 by myeow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,15 @@ static void	check_params(int argc, char **argv)
 	check_file(argv[1]);
 }
 
-static void	init_mlx_vars(t_mlx_vars *vars)
+static void	init_mlx_vars_and_img(t_mlx_vars *vars, t_img *image)
 {
 	vars->x_res = RES_WIDTH;
 	vars->y_res = RES_HEIGHT;
 	vars->mlx = mlx_init();
 	vars->mlx_win = mlx_new_window(vars->mlx, vars->x_res, \
 			vars->y_res, "Fil De Fur");
-	vars->x_origin_offset = vars->x_res / 2;
-	vars->y_origin_offset = vars->y_res / 2;
+	image->x_origin_offset = RES_WIDTH / 2;
+	image->y_origin_offset = RES_HEIGHT / 2;
 }
 
 static void	init_hooks(t_mlx_vars *vars)
@@ -68,12 +68,13 @@ int	main(int argc, char **argv)
 	map = (t_map) {0};
 	if (!fdf_parse(argv[1], &map))
 		fdf_error_exit("Parse error.", 0);
-	fdf_init_map(argv[1], &map);
-	fdf_print_map(&map);
+	fdf_map_init(argv[1], &map);
+	fdf_map_print(&map);
 	printf("Success: %s\n", argv[1]);
 	vars = (t_mlx_vars) {0};
-	init_mlx_vars(&vars);
+	init_mlx_vars_and_img(&vars, &image);
 	init_hooks(&vars);
+	fdf_draw_image(&vars, &image);
 	mlx_loop(vars.mlx);
 	return (0);
 }
