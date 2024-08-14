@@ -6,7 +6,7 @@
 /*   By: myeow <myeow@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 21:04:34 by myeow             #+#    #+#             */
-/*   Updated: 2024/08/14 15:06:52 by myeow            ###   ########.fr       */
+/*   Updated: 2024/08/15 01:00:03 by myeow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,16 @@
  * This is designed this way to reduce checks that can potentially reduce
  * performance.
  */
-void	fdf_draw_plot_pixel(t_mlx_vars *vars, int x, int y, t_color color)
+void	fdf_draw_plot_pixel(t_img *img, int x, int y, int color)
 {
 	char	*dst;
 
-	if (x >= vars->x_origin_offset || x < -vars->x_origin_offset)
+	if (x >= img->x_origin_offset || x < -img->x_origin_offset)
 		return ;
-	if (y >= vars->y_origin_offset || y < -vars->y_origin_offset)
+	if (y >= img->y_origin_offset || y < -img->y_origin_offset)
 		return ;
-	x += vars->x_origin_offset;
-	y = vars->y_origin_offset - 1 - y;
-	dst = vars->addr + (y * vars->line_length + x * (vars->bits_per_pixel / 8));
-	*((unsigned int *) dst) = color.code;
+	x += img->x_origin_offset;
+	y = img->y_origin_offset - 1 - y;
+	dst = img->addr + (y * img->line_len + x * (img->pxl_bit_size / 8));
+	*((unsigned int *) dst) = color;
 }
