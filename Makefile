@@ -38,8 +38,11 @@ SRC_M			=	\
 					fdf/fdf_parse					\
 					fdf/fdf_init_map				\
 					fdf/fdf_print_map				\
-					fdf/fdf_draw_line				\
-					mlx_utils/mlx_plot_pixel		\
+					fdf_hooks/fdf_hooks_key			\
+					fdf_hooks/fdf_hooks_exit		\
+					fdf_draw/fdf_draw_plot_pixel	\
+					fdf_draw/fdf_draw_line			\
+					fdf_draw/fdf_draw_image			\
 
 SRCS			=	$(addsuffix .c, $(addprefix $(SRCDIR), $(SRC_M)))
 

@@ -6,7 +6,7 @@
 /*   By: myeow <myeow@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 16:22:23 by myeow             #+#    #+#             */
-/*   Updated: 2024/08/08 23:44:54 by myeow            ###   ########.fr       */
+/*   Updated: 2024/08/14 18:16:17 by myeow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,17 +43,18 @@ static void	init_mlx_vars(t_mlx_vars *vars)
 	vars->mlx = mlx_init();
 	vars->mlx_win = mlx_new_window(vars->mlx, vars->x_res, \
 			vars->y_res, "Fil De Fur");
-	vars->x_origin_offset = img.x_res / 2;
-	vars->y_origin_offset = img.y_res / 2;
+	vars->x_origin_offset = vars->x_res / 2;
+	vars->y_origin_offset = vars->y_res / 2;
 }
 
-static void	init_hooks(void *win)
+static void	init_hooks(t_mlx_vars *vars)
 {
-	mlx_hook(win, 3, (1L << 1), key_hook, &vars);
-	mlx_hook(win, 4, (1L << 2), mouse_hook_down, &vars);
-	mlx_hook(win, 5, (1L << 3), mouse_hook_up, &vars);
-	mlx_hook(win, 6, (1L << 6), mouse_move_hook, &vars);
-	mlx_hook(win, 17, (1L << 0), exit_hook, &vars);
+	mlx_hook(vars->mlx_win, 3, (1L << 1), fdf_hooks_key, vars);
+	//mlx_hook(vars->win, 4, (1L << 2), mouse_hook_down, vars);
+	//mlx_hook(vars->win, 5, (1L << 3), mouse_hook_up, vars);
+	//mlx_hook(vars->win, 6, (1L << 6), mouse_move_hook, vars);
+	mlx_hook(vars->mlx_win, 17, (1L << 0), fdf_hooks_exit, vars);
+	//mlx_loop_hook(vars->mlx_win, loop_hook, vars);
 }
 
 #include <stdio.h>
@@ -61,6 +62,7 @@ int	main(int argc, char **argv)
 {
 	t_map		map;
 	t_mlx_vars	vars;
+	t_img		image;
 
 	check_params(argc, argv);
 	map = (t_map) {0};
@@ -71,21 +73,9 @@ int	main(int argc, char **argv)
 	printf("Success: %s\n", argv[1]);
 	vars = (t_mlx_vars) {0};
 	init_mlx_vars(&vars);
-	init_hooks(vars->mlx_win);
-	mlx_loop_hook(vars.mlx, loop_hook, &vars);
+	init_hooks(&vars);
 	mlx_loop(vars.mlx);
 	return (0);
-	/*
-	
-	img.img = mlx_new_image(mlx, img.x_res, img.y_res);
-	img.addr = mlx_get_data_
-		addr(img.img, &img.bits_per_pixel, \
-			&img.line_length, &img.endian);
-	mark_origin(&img);
-	test_line(&img);
-	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
-
-	*/
 }
 /*
 static void	mark_origin(t_data *data)
