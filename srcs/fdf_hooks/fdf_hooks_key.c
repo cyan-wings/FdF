@@ -1,23 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf_error_exit.c                                   :+:      :+:    :+:   */
+/*   fdf_hooks_key.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myeow <myeow@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/06 20:13:03 by myeow             #+#    #+#             */
-/*   Updated: 2024/08/13 20:20:55 by myeow            ###   ########.fr       */
+/*   Created: 2024/08/13 18:42:54 by myeow             #+#    #+#             */
+/*   Updated: 2024/08/13 21:01:35 by myeow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include "ft_print_utils.h"
+#include "fdf.h"
 
-/*
- * TODO: Free all heap memory.
- */
-void	fdf_error_exit(char *err_msg, int exit_status)
+int	fdf_hooks_key(int code, t_mlx_vars *vars)
 {
-	ft_putendl_fd(err_msg, 2);
-	exit(exit_status);
+	if (code == KEY_ESC)
+		return (fdf_hooks_exit(vars));
+	return (0);
 }

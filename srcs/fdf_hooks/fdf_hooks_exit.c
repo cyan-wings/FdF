@@ -1,17 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf_draw_xy.c                                      :+:      :+:    :+:   */
+/*   fdf_hooks_exit.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myeow <myeow@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/06 18:23:17 by myeow             #+#    #+#             */
-/*   Updated: 2024/08/06 18:39:48 by myeow            ###   ########.fr       */
+/*   Created: 2024/08/13 18:43:07 by myeow             #+#    #+#             */
+/*   Updated: 2024/08/13 20:20:14 by myeow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include ""
+#include "fdf.h"
 
-void	fdf_draw_xy(t_view *view)
+int	fdf_hooks_exit(t_mlx_vars *vars)
 {
-	
+	fdf_error_exit("Exiting fdf program!", 0);
+	return (1);
+	vars = 0;
+}

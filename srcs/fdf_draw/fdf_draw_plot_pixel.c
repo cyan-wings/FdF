@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx_plot_pixel.c                                   :+:      :+:    :+:   */
+/*   fdf_draw_plot_pixel.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myeow <myeow@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/30 21:34:27 by myeow             #+#    #+#             */
-/*   Updated: 2024/08/05 19:09:09 by myeow            ###   ########.fr       */
+/*   Created: 2024/08/13 21:04:34 by myeow             #+#    #+#             */
+/*   Updated: 2024/08/14 15:06:52 by myeow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,16 @@
  * This is designed this way to reduce checks that can potentially reduce
  * performance.
  */
-void	mlx_plot_pixel(t_data *data, int x, int y, t_color color)
+void	fdf_draw_plot_pixel(t_mlx_vars *vars, int x, int y, t_color color)
 {
 	char	*dst;
 
-	if (x >= data->x_origin_offset || x < -data->x_origin_offset)
+	if (x >= vars->x_origin_offset || x < -vars->x_origin_offset)
 		return ;
-	if (y >= data->y_origin_offset || y < -data->y_origin_offset)
+	if (y >= vars->y_origin_offset || y < -vars->y_origin_offset)
 		return ;
-	x += data->x_origin_offset;
-	y = data->y_origin_offset - 1 - y;
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+	x += vars->x_origin_offset;
+	y = vars->y_origin_offset - 1 - y;
+	dst = vars->addr + (y * vars->line_length + x * (vars->bits_per_pixel / 8));
 	*((unsigned int *) dst) = color.code;
 }
