@@ -6,7 +6,7 @@
 /*   By: myeow <myeow@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 21:04:34 by myeow             #+#    #+#             */
-/*   Updated: 2024/08/21 00:12:11 by myeow            ###   ########.fr       */
+/*   Updated: 2024/08/21 23:58:05 by myeow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void	plot(t_img *img, int x, int y, int color)
 
 void	fdf_draw_plot_pixel(t_draw_line *info, int x, int y, double intensity)
 {
-	unsigned int 	color;
+	unsigned int	color;
 	unsigned char	alpha;
 
 	color = info->color_temp;

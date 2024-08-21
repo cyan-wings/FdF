@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf_draw_menu.c                                    :+:      :+:    :+:   */
+/*   fdf_hooks_mouse_press.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myeow <myeow@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/15 00:41:33 by myeow             #+#    #+#             */
-/*   Updated: 2024/08/22 00:00:10 by myeow            ###   ########.fr       */
+/*   Created: 2024/08/22 00:40:23 by myeow             #+#    #+#             */
+/*   Updated: 2024/08/22 00:42:26 by myeow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "keys_macos.h"
 #include "fdf.h"
-#include "libft.h"
-#include <stdlib.h>
 
-void	fdf_draw_menu(t_mlx_vars *vars)
+int	fdf_hooks_mouse_press(int code, t_mlx_vars *vars)
 {
-	char	*str;
-	char	*val;
-
-	mlx_string_put(vars->mlx, vars->mlx_win, 100, vars->y_res - 200, 0xffbbbbbb,
-		"FDF");
-	val = ft_itoa(vars->x_res);
-	str = ft_strjoin("x_res: ", val);
-	mlx_string_put(vars->mlx, vars->mlx_win, 100,
-		vars->y_res - 180, 0xffbbbbbb, str);
-	free(val);
-	free(str);
+	vars->fdf->hold.prev_x = x;
+	vars->fdf->hold.prev_y = y;
+	if (keycode == M_CLK_L)
+		vars->fdf->hold.left_m = true;
+	if (keycode == M_CLK_R)
+		vars->fdf->hold.right_m = true;
+	if (keycode == M_CLK_M)
+		vars->fdf->hold.middle_m = true;
+	if (keycode == M_SCR_U)
+		z_rot(vars, -0.1);
+	if (keycode == M_SCR_D)
+		z_rot(vars, 0.1);
+	return (0);
 }

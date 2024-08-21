@@ -6,7 +6,7 @@
 /*   By: myeow <myeow@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 16:48:11 by myeow             #+#    #+#             */
-/*   Updated: 2024/08/21 16:23:52 by myeow            ###   ########.fr       */
+/*   Updated: 2024/08/22 00:57:14 by myeow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,6 @@
 # else
 #  include "keys_linux.h"
 # endif
-
-typedef struct s_mlx_vars
-{
-	int		x_res;
-	int		y_res;
-	void	*mlx;
-	void	*mlx_win;
-}			t_mlx_vars;
 
 /*
  * This struct represents a point on the map.
@@ -51,18 +43,30 @@ typedef struct s_point
  * 		map: The default map after parsing.
  * 		map_v: The virtual map which represents the projection after
  * 			translation, rotation and scaling.
+ * 		sq_side_len: Length of each sqaure of wireframe.
+ * 		z_scale_val: The scaling value of z which does not affect x, y.
  */
 typedef struct s_map
 {
 	t_point	***map;
-	t_point ***map_v;
+	t_point	***map_v;
 	int		width;
 	int		length;
 	int		z_max;
 	int		z_min;
 	double	sq_side_len;
-	t_quat	orientation;
+	double	z_scale_val;
 }			t_map;
+
+typedef struct s_projection
+{
+	t_quat	orientation;
+	t_quat	start_o;
+	t_quat	end_o;
+	t_quat	out_o;
+	int		sign;
+	double	t;
+}			t_proj;
 
 /* 
  * Struct information is retrieved from mlx_get_data_addr function.
@@ -72,6 +76,8 @@ typedef struct s_map
  * 		focal_len: Distance from the camera to the model.
  * 		skip: The larger the skip, the lesser the pixels plotted,
  * 			reducing image quality.
+ * 		map_pos: The map position vector.
+ * 		map_scale: Zoom value.
  */
 typedef struct s_image_data
 {
@@ -85,6 +91,9 @@ typedef struct s_image_data
 	double	focal_len;
 	int		skip;
 	t_map	*map;
+	t_vec3	map_pos;
+	double	map_scale;
+	t_proj	*proj;
 }			t_img;
 
 typedef struct s_draw_line
@@ -103,15 +112,14 @@ typedef struct s_draw_line
 	unsigned int	color_temp;
 }					t_draw_line;
 
-typedef struct s_projection
+typedef struct s_mlx_vars
 {
-	t_quat	orientation;
-	t_quat	start_o;
-	t_quat	end_o;
-	t_quat	out_o;
-	int		sign;
-	double	t;
-}			t_proj;
+	int		x_res;
+	int		y_res;
+	void	*mlx;
+	void	*mlx_win;
+	t_img	*image;
+}			t_mlx_vars;
 
 void	fdf_error_exit(char *err_msg, int exit_status);
 int		fdf_parse(const char *filename, t_map *map);
@@ -121,13 +129,18 @@ void	fdf_map_init(const char *filename, t_map *map);
 void	fdf_map_print(t_map *map);
 
 //HOOKS
-int		fdf_hooks_key(int code, t_mlx_vars *vars);
+int		fdf_hooks_key_press(int code, t_mlx_vars *vars);
+int		fdf_hooks_key_release(int code, t_mlx_vars *vars);
 int		fdf_hooks_exit(t_mlx_vars *vars);
 
 //DRAW
-void	fdf_draw_image(t_mlx_vars *vars, t_img *data);
+void	fdf_draw_image(t_mlx_vars *vars);
 
 //PROJECTION
-void	fdf_projection_perspective(t_point *p, double focal_len, double cam_dist);
+void	fdf_projection(t_img *data, t_proj *pj);
+void	fdf_projection_perspective(t_point *p, double focal_len,
+			double cam_dist);
+void	fdf_projection_translate(t_vec3 *v, double x, double y, double z);
+void	fdf_projection_scale(t_vec3 *v, double factor);
 
 #endif

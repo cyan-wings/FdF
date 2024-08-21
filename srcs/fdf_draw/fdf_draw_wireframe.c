@@ -6,13 +6,13 @@
 /*   By: myeow <myeow@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 22:45:14 by myeow             #+#    #+#             */
-/*   Updated: 2024/08/21 17:36:34 by myeow            ###   ########.fr       */
+/*   Updated: 2024/08/21 23:57:37 by myeow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static int check_win_bounds(t_img *data, t_vec2 v, int border)
+static int	check_win_bounds(t_img *data, t_vec2 v, int border)
 {
 	int	a;
 
@@ -26,7 +26,6 @@ static int check_win_bounds(t_img *data, t_vec2 v, int border)
 
 void	fdf_draw_line(t_img *img, t_point *a, t_point *b);
 
-#include <stdio.h>
 static void	draw_edges(t_img *data, int i, int j, int skip)
 {
 	t_map		*map;
@@ -34,7 +33,6 @@ static void	draw_edges(t_img *data, int i, int j, int skip)
 
 	map = data->map;
 	info = (t_draw_line){0};
-	printf("i: %d, j: %d\n", i, j);
 	if (j + skip < map->width)
 	{
 		fdf_projection_perspective(map->map[i][j + skip], data->focal_len, 25);
