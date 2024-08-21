@@ -144,6 +144,7 @@ MATHSRC			=		\
 						fractional					\
 						rev_fractional				\
 						fmod						\
+						power						\
 						sqrt						\
 						sin							\
 						cos							\

@@ -33,18 +33,21 @@ HDRINC			=	-I$(HDRDIR)
 
 SRCDIR			=	srcs/
 SRC_M			=	\
-					fdf/fdf							\
-					fdf/fdf_error_exit				\
-					fdf/fdf_parse					\
-					fdf_map/fdf_map_init			\
-					fdf_map/fdf_map_init_rb_color	\
-					fdf_map/fdf_map_print			\
-					fdf_hooks/fdf_hooks_key			\
-					fdf_hooks/fdf_hooks_exit		\
-					fdf_draw/fdf_draw_plot_pixel	\
-					fdf_draw/fdf_draw_line			\
-					fdf_draw/fdf_draw_menu			\
-					fdf_draw/fdf_draw_image			\
+					fdf/fdf										\
+					fdf/fdf_error_exit							\
+					fdf/fdf_parse								\
+					fdf_map/fdf_map_init						\
+					fdf_map/fdf_map_cpy							\
+					fdf_map/fdf_map_print						\
+					fdf_hooks/fdf_hooks_key						\
+					fdf_hooks/fdf_hooks_exit					\
+					fdf_draw/fdf_draw_image						\
+					fdf_draw/fdf_draw_wireframe					\
+					fdf_draw/fdf_draw_line						\
+					fdf_draw/fdf_draw_line_helper				\
+					fdf_draw/fdf_draw_plot_pixel				\
+					fdf_draw/fdf_draw_menu						\
+					fdf_projection/fdf_projection_perspective	\
 
 SRCS			=	$(addsuffix .c, $(addprefix $(SRCDIR), $(SRC_M)))
 
@@ -65,7 +68,7 @@ OBJDIRS			=	$(sort $(dir $(OBJS)))
 NAME			=	FdF
 CC				=	cc
 CFLAGS			=	-Wall -Wextra -Werror$(if $(FSANITIZE), $(FSANITIZE))
-#FSANITIZE		=	-fsanitize=address -g
+FSANITIZE		=	-fsanitize=address -g
 
 IFLAGS			=	$(HDRINC) $(LIBFTINC) $(MLXINC)
 LFLAGS			=	$(LIBFTLD) $(MLXLD)

@@ -6,7 +6,7 @@
 /*   By: myeow <myeow@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 00:16:26 by myeow             #+#    #+#             */
-/*   Updated: 2024/08/15 00:24:20 by myeow            ###   ########.fr       */
+/*   Updated: 2024/08/21 17:29:14 by myeow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ static void	alloc_map_helper(t_map *map, t_point ***grid)
 static void	alloc_map(t_map *map)
 {
 	t_point	***grid;
+	t_point	***grid_cpy;
 
 	grid = 0;
 	grid = (t_point ***)ft_calloc(map->length + 1, sizeof(t_point **));
@@ -52,6 +53,12 @@ static void	alloc_map(t_map *map)
 		fdf_error_exit("Malloc grid fail.", 1);
 	alloc_map_helper(map, grid);
 	map->map = grid;
+	grid_cpy = 0;
+	grid_cpy = (t_point ***)ft_calloc(map->length + 1, sizeof(t_point **));
+	if (!grid_cpy)
+		fdf_error_exit("Malloc grid_cpy fail.", 1);
+	alloc_map_helper(map, grid_cpy);
+	map->map_v = grid;
 }
 
 static void	process_color(char *hex_code, t_point *point)
@@ -77,12 +84,21 @@ static void	process_color(char *hex_code, t_point *point)
 	ft_memdel((void **) &buf);
 }
 
-static void	fdf_init_map_helper(t_map *map, char *line, int *l)
+/*
+ * Original formula:
+ * 		
+ * 		x  + 2x ( i - l / 2)
+ *
+ * 		where x = sq_side_len, i = current length, l = total length
+ */
+#include <stdio.h>
+static void	fdf_init_map_helper(t_map *map, char *line, int l)
 {
 	char	*save_ptr;
 	char	*temp;
 	int		w;
-	int		z_value;
+	int		z;
+	t_point	*p;
 
 	save_ptr = 0;
 	temp = 0;
@@ -90,19 +106,22 @@ static void	fdf_init_map_helper(t_map *map, char *line, int *l)
 	w = 0;
 	while (temp)
 	{
-		z_value = ft_atoi(ft_strtok(temp, ","));
-		map->map[*l][w]->z = z_value;
-		if (z_value > map->z_max)
-			map->z_max = z_value;
-		if (z_value < map->z_min)
-			map->z_min = z_value;
-		process_color(ft_strtok(0, ","), (map->map)[*l][w]);
+		p = map->map[l][w];
+		z = ft_atoi(ft_strtok(temp, ","));
+		if (z > map->z_max)
+			map->z_max = z;
+		if (z < map->z_min)
+			map->z_min = z;
+		p->o = (t_vec3){.x = map->sq_side_len * (2 * w - map->width + 1),
+			.y = map->sq_side_len * (2 * l - map->length + 1), .z = z};
+		p->t = p->o;
+		process_color(ft_strtok(0, ","), p);
 		++w;
 		temp = ft_strtok_r(0, " \n", &save_ptr);
 	}
 }
 
-void	fdf_map_init_rb_color(t_map *map);
+void	fdf_map_cpy(t_map *map);
 
 #include <stdio.h>
 void	fdf_map_init(const char *filename, t_map *map)
@@ -117,18 +136,21 @@ void	fdf_map_init(const char *filename, t_map *map)
 	alloc_map(map);
 	map->z_max = INT_MIN;
 	map->z_min = INT_MAX;
+	map->sq_side_len = 1 + 2000 / (map->width * map->length);
 	line = 0;
 	line = get_next_line(fd);
 	l = 0;
 	while (line)
 	{
-		fdf_init_map_helper(map, line, &l);
+		fdf_init_map_helper(map, line, l);
 		line = get_next_line(fd);
 		++l;
 	}
 	close(fd);
 	ft_memdel((void **) &line);
-	fdf_map_init_rb_color(map);
+	fdf_map_cpy(map);
 	printf("Success in initialising map: %s\n", filename);
 	printf("Min Z: %d, Max Z: %d\n", map->z_min, map->z_max);
+	printf("Width: %d, Length: %d\n", map->width, map->length);
+	printf("Square side len: %f\n", map->sq_side_len);
 }

@@ -6,7 +6,7 @@
 /*   By: myeow <myeow@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 16:22:23 by myeow             #+#    #+#             */
-/*   Updated: 2024/08/15 01:07:10 by myeow            ###   ########.fr       */
+/*   Updated: 2024/08/21 16:45:24 by myeow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,19 @@
 #define RES_WIDTH 1920
 #define RES_HEIGHT 1080
 
-static void	check_file(const char *filename)
+/*
+ * Checks parameters and also the filename.
+ */
+static void	check_params(int argc, char **argv)
 {
 	int	fd;
 
-	fd = open(filename, O_RDONLY);
+	if (argc != 2)
+		fdf_error_exit("Usage: ./FdF map.fdf", 0);
+	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
 		fdf_error_exit("File doesn't exist.", 0);
 	close(fd);
-}
-
-static void	check_params(int argc, char **argv)
-{
-	if (argc != 2)
-		fdf_error_exit("Usage: ./FdF map.fdf", 0);
-	check_file(argv[1]);
 }
 
 static void	init_mlx_vars_and_img(t_mlx_vars *vars, t_img *image)
@@ -45,6 +43,7 @@ static void	init_mlx_vars_and_img(t_mlx_vars *vars, t_img *image)
 			vars->y_res, "Fil De Fur");
 	image->x_origin_offset = RES_WIDTH / 2;
 	image->y_origin_offset = RES_HEIGHT / 2;
+	image->focal_len = 300;
 }
 
 static void	init_hooks(t_mlx_vars *vars)
@@ -57,12 +56,33 @@ static void	init_hooks(t_mlx_vars *vars)
 	//mlx_loop_hook(vars->mlx_win, loop_hook, vars);
 }
 
+/*
+ * Sets to isometric projection
+ */
+void	init_projection(t_proj *pj)
+{
+	t_quat	q;
+
+	ft_quatset_id(&pj->orientation);
+	ft_quat_from_zrotation(-PI_4, &q);
+	ft_quat_mult(&q, &pj->orientation, &pj->orientation);
+	ft_quat_from_xrotation(-PI_4, &q);
+	ft_quat_mult(&q, &pj->orientation, &pj->orientation);
+	ft_quat_print(&pj->orientation);
+	pj->start_o = pj->orientation;
+	ft_quatset_id(&pj->end_o);
+	ft_quatset_id(&pj->out_o);
+	pj->sign = 1;
+	pj->t = 1.1;
+}
+
 #include <stdio.h>
 int	main(int argc, char **argv)
 {
 	t_map		map;
 	t_mlx_vars	vars;
 	t_img		image;
+	t_proj		projection;
 
 	check_params(argc, argv);
 	map = (t_map) {0};
@@ -73,20 +93,15 @@ int	main(int argc, char **argv)
 	printf("Success: %s\n", argv[1]);
 	vars = (t_mlx_vars) {0};
 	init_mlx_vars_and_img(&vars, &image);
+	image.map = &map;
 	init_hooks(&vars);
+	init_projection(&projection);
 	fdf_draw_image(&vars, &image);
 	mlx_loop(vars.mlx);
 	return (0);
 }
+
 /*
-static void	mark_origin(t_data *data)
-{
-	t_color	color;
-
-	color = (t_color){.t_trgb.r = 255};
-	mlx_plot_pixel(data, 0, 0, color);
-}
-
 static void	test_line(t_data *data)
 {
 	int		i;

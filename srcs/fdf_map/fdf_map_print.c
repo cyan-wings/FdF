@@ -6,7 +6,7 @@
 /*   By: myeow <myeow@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 00:19:12 by myeow             #+#    #+#             */
-/*   Updated: 2024/08/15 01:18:37 by myeow            ###   ########.fr       */
+/*   Updated: 2024/08/21 16:51:32 by myeow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,16 @@
 
 static void	print_point_info(t_point *point)
 {
-	ft_putnbr_fd(point->z, 1);
+	ft_putchar_fd('[', 1);
+	ft_putnbr_fd(point->o.x, 1);
+	ft_putchar_fd(',', 1);
+	ft_putnbr_fd(point->o.y, 1);
+	ft_putchar_fd(',', 1);
+	ft_putnbr_fd(point->o.z, 1);
 	ft_putchar_fd(',', 1);
 	ft_putnbr_base_fd(point->color,
 			"0123456789ABCDEF", 1);
-	if (point->r_color)
-	{
-		ft_putchar_fd(',', 1);
-		ft_putnbr_base_fd(point->r_color,
-				"0123456789ABCDEF", 1);
-	}
-	if (point->b_color)
-	{
-		ft_putchar_fd(',', 1);
-		ft_putnbr_base_fd(point->b_color,
-				"0123456789ABCDEF", 1);
-	}
+	ft_putchar_fd(']', 1);
 	ft_putchar_fd(' ', 1);
 }
 
