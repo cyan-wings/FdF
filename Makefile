@@ -39,7 +39,8 @@ SRC_M			=	\
 					fdf_map/fdf_map_init						\
 					fdf_map/fdf_map_cpy							\
 					fdf_map/fdf_map_print						\
-					fdf_hooks/fdf_hooks_key						\
+					fdf_hooks/fdf_hooks_key_press				\
+					fdf_hooks/fdf_hooks_key_release				\
 					fdf_hooks/fdf_hooks_exit					\
 					fdf_draw/fdf_draw_image						\
 					fdf_draw/fdf_draw_wireframe					\
@@ -47,7 +48,10 @@ SRC_M			=	\
 					fdf_draw/fdf_draw_line_helper				\
 					fdf_draw/fdf_draw_plot_pixel				\
 					fdf_draw/fdf_draw_menu						\
+					fdf_projection/fdf_projection				\
 					fdf_projection/fdf_projection_perspective	\
+					fdf_projection/fdf_projection_translate		\
+					fdf_projection/fdf_projection_scale			\
 
 SRCS			=	$(addsuffix .c, $(addprefix $(SRCDIR), $(SRC_M)))
 

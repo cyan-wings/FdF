@@ -6,7 +6,7 @@
 /*   By: myeow <myeow@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 19:52:34 by myeow             #+#    #+#             */
-/*   Updated: 2024/08/21 17:22:18 by myeow            ###   ########.fr       */
+/*   Updated: 2024/08/22 00:01:08 by myeow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,16 +68,16 @@ static double	first_endpoint_plot(t_draw_line *info)
 	if (info->steep)
 	{
 		fdf_draw_plot_pixel(info, info->y0, info->x0,
-				ft_rev_fractional(y) * x_gap);
+			ft_rev_fractional(y) * x_gap);
 		fdf_draw_plot_pixel(info, info->y0 + 1, info->x0,
-				ft_fractional(y) * x_gap);
+			ft_fractional(y) * x_gap);
 	}
 	else
 	{
 		fdf_draw_plot_pixel(info, info->x0, info->y0,
-				ft_rev_fractional(y) * x_gap);
+			ft_rev_fractional(y) * x_gap);
 		fdf_draw_plot_pixel(info, info->x0, info->y0 + 1,
-				ft_fractional(y) * x_gap);
+			ft_fractional(y) * x_gap);
 	}
 	return (y + info->gradient);
 }
@@ -97,22 +97,21 @@ static void	second_endpoint_plot(t_draw_line *info)
 	if (info->steep)
 	{
 		fdf_draw_plot_pixel(info, info->y1, info->x1,
-				ft_rev_fractional(y) * x_gap);
+			ft_rev_fractional(y) * x_gap);
 		fdf_draw_plot_pixel(info, info->y1 + 1, info->x1,
-				ft_fractional(y) * x_gap);
+			ft_fractional(y) * x_gap);
 	}
 	else
 	{
 		fdf_draw_plot_pixel(info, info->x1, info->y1,
-				ft_rev_fractional(y) * x_gap);
+			ft_rev_fractional(y) * x_gap);
 		fdf_draw_plot_pixel(info, info->x1, info->y1 + 1,
-				ft_fractional(y) * x_gap);
+			ft_fractional(y) * x_gap);
 	}
 }
 
 void	fdf_draw_line_helper(t_draw_line *info, double intery);
 
-#include <stdio.h>
 void	fdf_draw_line(t_img *img, t_point *a, t_point *b)
 {
 	t_draw_line	info;

@@ -6,7 +6,7 @@
 /*   By: myeow <myeow@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 00:16:26 by myeow             #+#    #+#             */
-/*   Updated: 2024/08/21 17:29:14 by myeow            ###   ########.fr       */
+/*   Updated: 2024/08/21 23:56:32 by myeow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,6 @@ static void	process_color(char *hex_code, t_point *point)
  *
  * 		where x = sq_side_len, i = current length, l = total length
  */
-#include <stdio.h>
 static void	fdf_init_map_helper(t_map *map, char *line, int l)
 {
 	char	*save_ptr;
@@ -123,7 +122,6 @@ static void	fdf_init_map_helper(t_map *map, char *line, int l)
 
 void	fdf_map_cpy(t_map *map);
 
-#include <stdio.h>
 void	fdf_map_init(const char *filename, t_map *map)
 {
 	int		fd;
@@ -137,6 +135,7 @@ void	fdf_map_init(const char *filename, t_map *map)
 	map->z_max = INT_MIN;
 	map->z_min = INT_MAX;
 	map->sq_side_len = 1 + 2000 / (map->width * map->length);
+	map->z_scale_val = 1;
 	line = 0;
 	line = get_next_line(fd);
 	l = 0;
@@ -149,8 +148,4 @@ void	fdf_map_init(const char *filename, t_map *map)
 	close(fd);
 	ft_memdel((void **) &line);
 	fdf_map_cpy(map);
-	printf("Success in initialising map: %s\n", filename);
-	printf("Min Z: %d, Max Z: %d\n", map->z_min, map->z_max);
-	printf("Width: %d, Length: %d\n", map->width, map->length);
-	printf("Square side len: %f\n", map->sq_side_len);
 }
