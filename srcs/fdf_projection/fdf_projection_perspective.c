@@ -1,34 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_power.c                                         :+:      :+:    :+:   */
+/*   fdf_projection_perspective.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myeow <myeow@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/10 22:31:01 by myeow             #+#    #+#             */
-/*   Updated: 2024/08/21 17:49:43 by myeow            ###   ########.fr       */
+/*   Created: 2024/08/19 17:39:25 by myeow             #+#    #+#             */
+/*   Updated: 2024/08/21 00:32:28 by myeow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-double	ft_abs(double d);
+#include "fdf.h"
 
-double	ft_power(double x, int p)
+void	fdf_projection_perspective(t_point *p, double focal_len,
+		double cam_dist)
 {
-	double			result;
-	unsigned int	p_abs;
+	double	dist_from_focal;
+	double	factor;
 
-	if (x == 0 && p < 0)
-		return (0);
-	result = 1.0;
-	p_abs = ft_abs(p);
-	while (p_abs)
-	{
-		if (p_abs % 2 == 1)
-			result *= x;
-		x *= x;
-		p_abs /= 2;
-	}
-	if (p < 0)
-		result = 1.0 / result;
-	return (result);
+	dist_from_focal = cam_dist - p->t.z + focal_len;
+	factor = focal_len / dist_from_focal;
+	p->v = (t_vec2){.x = (p->t.x * factor) + 0.5,
+		.y = (p->t.y * factor) + 0.5};
 }

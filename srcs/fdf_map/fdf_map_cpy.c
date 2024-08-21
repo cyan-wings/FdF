@@ -1,35 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf_map_init_rb_color.c                            :+:      :+:    :+:   */
+/*   fdf_map_cpy.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myeow <myeow@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/15 00:21:30 by myeow             #+#    #+#             */
-/*   Updated: 2024/08/15 00:36:36 by myeow            ###   ########.fr       */
+/*   Created: 2024/08/19 19:17:04 by myeow             #+#    #+#             */
+/*   Updated: 2024/08/20 21:45:55 by myeow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	fdf_map_init_rb_color(t_map *map)
+void	fdf_map_cpy(t_map *map)
 {
-	int	l;
-	int	w;
-	int	adjacent_color;
+	int		i;
+	int		j;
+	t_point	*p1;
+	t_point	*p2;
 
-	l = -1;
-	while (++l < map->length - 1)
+	i = -1;
+	while (++i < map->length)
 	{
-		w = -1;
-		while (++w < map->width - 1)
+		j = -1;
+		while (++j < map->width)
 		{
-			adjacent_color = map->map[l][w + 1]->color;
-			if (adjacent_color)
-				map->map[l][w]->r_color = adjacent_color;
-			adjacent_color = map->map[l + 1][w]->color;
-			if (adjacent_color)
-				map->map[l][w]->b_color = adjacent_color;
+			p1 = map->map[i][j];
+			p2 = map->map_v[i][j];
+			p2->o = p1->o;
+			p2->color = p1->color;
 		}
 	}
 }

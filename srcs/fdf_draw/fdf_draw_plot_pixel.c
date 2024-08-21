@@ -6,7 +6,7 @@
 /*   By: myeow <myeow@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 21:04:34 by myeow             #+#    #+#             */
-/*   Updated: 2024/08/15 01:00:03 by myeow            ###   ########.fr       */
+/*   Updated: 2024/08/21 00:12:11 by myeow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
  * This is designed this way to reduce checks that can potentially reduce
  * performance.
  */
-void	fdf_draw_plot_pixel(t_img *img, int x, int y, int color)
+static void	plot(t_img *img, int x, int y, int color)
 {
 	char	*dst;
 
@@ -30,4 +30,18 @@ void	fdf_draw_plot_pixel(t_img *img, int x, int y, int color)
 	y = img->y_origin_offset - 1 - y;
 	dst = img->addr + (y * img->line_len + x * (img->pxl_bit_size / 8));
 	*((unsigned int *) dst) = color;
+}
+
+void	fdf_draw_plot_pixel(t_draw_line *info, int x, int y, double intensity)
+{
+	unsigned int 	color;
+	unsigned char	alpha;
+
+	color = info->color_temp;
+	alpha = (unsigned char)(255 * (1 - intensity));
+	if (info->image_data->endian)
+		color = (color & 0x00FFFFFF) | (alpha << 24);
+	else
+		color = (color & 0xFFFFFF00) | alpha;
+	plot(info->image_data, x, y, color);
 }

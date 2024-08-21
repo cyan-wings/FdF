@@ -6,7 +6,7 @@
 /*   By: myeow <myeow@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 00:23:50 by myeow             #+#    #+#             */
-/*   Updated: 2024/08/10 16:08:45 by myeow            ###   ########.fr       */
+/*   Updated: 2024/08/21 17:21:18 by myeow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ double	ft_sqrt(double x)
 	double	result;
 
 	if (x < 0)
-		ft_putendl_fd("Undefined.", 2);
+		ft_putendl_fd("Sqrt: Undefined.", 2);
 	if (x == 0.0 || x == 1.0)
 		return (x);
 	tolerance = 1e-10;
