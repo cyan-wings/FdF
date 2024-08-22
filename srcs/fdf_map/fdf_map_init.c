@@ -6,7 +6,7 @@
 /*   By: myeow <myeow@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 00:16:26 by myeow             #+#    #+#             */
-/*   Updated: 2024/08/21 23:56:32 by myeow            ###   ########.fr       */
+/*   Updated: 2024/08/22 15:07:19 by myeow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,13 @@ static void	alloc_map_helper(t_map *map, t_point ***grid)
 		row = 0;
 		row = (t_point **)ft_calloc(map->width + 1, sizeof(t_point *));
 		if (!row)
-			fdf_error_exit("Malloc grid width fail.", 1);
+			fdf_error_exit(map, "Malloc grid width fail.", 1);
 		w = -1;
 		while (++w < map->width)
 		{
 			p = (t_point *)ft_memalloc(sizeof(t_point));
 			if (!p)
-				fdf_error_exit("Malloc point fail.", 1);
+				fdf_error_exit(map, "Malloc point fail.", 1);
 			row[w] = p;
 		}
 		grid[l] = row;
@@ -45,20 +45,13 @@ static void	alloc_map_helper(t_map *map, t_point ***grid)
 static void	alloc_map(t_map *map)
 {
 	t_point	***grid;
-	t_point	***grid_cpy;
 
 	grid = 0;
 	grid = (t_point ***)ft_calloc(map->length + 1, sizeof(t_point **));
 	if (!grid)
-		fdf_error_exit("Malloc grid fail.", 1);
+		fdf_error_exit(0, "Malloc grid fail.", 1);
 	alloc_map_helper(map, grid);
 	map->map = grid;
-	grid_cpy = 0;
-	grid_cpy = (t_point ***)ft_calloc(map->length + 1, sizeof(t_point **));
-	if (!grid_cpy)
-		fdf_error_exit("Malloc grid_cpy fail.", 1);
-	alloc_map_helper(map, grid_cpy);
-	map->map_v = grid;
 }
 
 static void	process_color(char *hex_code, t_point *point)
@@ -120,8 +113,6 @@ static void	fdf_init_map_helper(t_map *map, char *line, int l)
 	}
 }
 
-void	fdf_map_cpy(t_map *map);
-
 void	fdf_map_init(const char *filename, t_map *map)
 {
 	int		fd;
@@ -130,7 +121,7 @@ void	fdf_map_init(const char *filename, t_map *map)
 
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
-		fdf_error_exit("Cannot open file when initiating map", 1);
+		fdf_error_exit(0, "Cannot open file when initiating map", 1);
 	alloc_map(map);
 	map->z_max = INT_MIN;
 	map->z_min = INT_MAX;
@@ -142,10 +133,10 @@ void	fdf_map_init(const char *filename, t_map *map)
 	while (line)
 	{
 		fdf_init_map_helper(map, line, l);
+		ft_memdel((void **) &line);
 		line = get_next_line(fd);
 		++l;
 	}
 	close(fd);
 	ft_memdel((void **) &line);
-	fdf_map_cpy(map);
 }
