@@ -1,19 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf_hooks_exit.c                                   :+:      :+:    :+:   */
+/*   fdf_animation_perspective.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myeow <myeow@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/13 18:43:07 by myeow             #+#    #+#             */
-/*   Updated: 2024/08/22 15:05:43 by myeow            ###   ########.fr       */
+/*   Created: 2024/08/22 16:34:46 by myeow             #+#    #+#             */
+/*   Updated: 2024/08/22 16:40:05 by myeow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+#include "ft_print_utils.h"
 
-int	fdf_hooks_exit(t_mlx_vars *vars)
+void	fdf_animation_perspective(t_proj *pj)
 {
-	fdf_error_exit(vars->image->map, "Exiting fdf program!", 0);
-	return (1);
+	pj->start_o = pj->orientation;
+	pj->end_o = pj->orientation;
+	pj->out_o = pj->orientation;
+	pj->t = 0.0;
+	pj->sign = -1;
+	pj->orientation = pj->end_o;
 }

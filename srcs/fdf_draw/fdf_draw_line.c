@@ -6,7 +6,7 @@
 /*   By: myeow <myeow@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 19:52:34 by myeow             #+#    #+#             */
-/*   Updated: 2024/08/22 00:01:08 by myeow            ###   ########.fr       */
+/*   Updated: 2024/08/22 16:42:28 by myeow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ void	fdf_draw_line(t_img *img, t_point *a, t_point *b)
 
 	info = (t_draw_line){0};
 	info.image_data = img;
-	default_color = 0xFF0000;
+	default_color = 0xFF00;
 	init_color(&info, a, b, default_color);
 	init_draw_line(&info, a, b);
 	intery = first_endpoint_plot(&info);

@@ -1,34 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf_map_cpy.c                                      :+:      :+:    :+:   */
+/*   fdf_animation_isometric.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myeow <myeow@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/19 19:17:04 by myeow             #+#    #+#             */
-/*   Updated: 2024/08/20 21:45:55 by myeow            ###   ########.fr       */
+/*   Created: 2024/08/22 16:18:07 by myeow             #+#    #+#             */
+/*   Updated: 2024/08/22 16:34:30 by myeow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+#include "ft_print_utils.h"
 
-void	fdf_map_cpy(t_map *map)
+void	fdf_animation_isometric(t_proj *pj)
 {
-	int		i;
-	int		j;
-	t_point	*p1;
-	t_point	*p2;
+	t_quat	q;
 
-	i = -1;
-	while (++i < map->length)
-	{
-		j = -1;
-		while (++j < map->width)
-		{
-			p1 = map->map[i][j];
-			p2 = map->map_v[i][j];
-			p2->o = p1->o;
-			p2->color = p1->color;
-		}
-	}
+	pj->start_o = pj->orientation;
+	ft_quatset_id(&pj->end_o);
+	ft_quat_from_zrotation(-PI_4, &q);
+	ft_quat_mult(&q, &pj->end_o, &pj->end_o);
+	ft_quat_from_xrotation(-PI_4, &q);
+	ft_quat_mult(&q, &pj->end_o, &pj->end_o);
+	pj->t = 0.0;
+	pj->sign = 1;
+	pj->orientation = pj->end_o;
+	ft_putendl_fd("Isometric", 1);
 }

@@ -6,13 +6,13 @@
 /*   By: myeow <myeow@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 21:59:23 by myeow             #+#    #+#             */
-/*   Updated: 2024/08/09 22:01:25 by myeow            ###   ########.fr       */
+/*   Updated: 2024/08/22 17:27:07 by myeow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_math_utils.h"
 
-void	ft_quatcopy(t_quat *q, t_quat *out)
+void	ft_quatcpy(t_quat *q, t_quat *out)
 {
 	if (!q || !out)
 		return ;

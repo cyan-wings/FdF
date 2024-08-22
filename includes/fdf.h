@@ -6,7 +6,7 @@
 /*   By: myeow <myeow@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 16:48:11 by myeow             #+#    #+#             */
-/*   Updated: 2024/08/22 00:57:14 by myeow            ###   ########.fr       */
+/*   Updated: 2024/08/22 17:00:42 by myeow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ typedef struct s_point
 typedef struct s_map
 {
 	t_point	***map;
-	t_point	***map_v;
 	int		width;
 	int		length;
 	int		z_max;
@@ -118,10 +117,12 @@ typedef struct s_mlx_vars
 	int		y_res;
 	void	*mlx;
 	void	*mlx_win;
+	int		cycle_per_frame;
+	int		cycle_count;
 	t_img	*image;
 }			t_mlx_vars;
 
-void	fdf_error_exit(char *err_msg, int exit_status);
+void	fdf_error_exit(t_map *map, char *err_msg, int exit_status);
 int		fdf_parse(const char *filename, t_map *map);
 
 //MAP
@@ -131,6 +132,7 @@ void	fdf_map_print(t_map *map);
 //HOOKS
 int		fdf_hooks_key_press(int code, t_mlx_vars *vars);
 int		fdf_hooks_key_release(int code, t_mlx_vars *vars);
+int		fdf_hooks_mouse_press(int code, t_mlx_vars *vars);
 int		fdf_hooks_exit(t_mlx_vars *vars);
 
 //DRAW
@@ -142,5 +144,6 @@ void	fdf_projection_perspective(t_point *p, double focal_len,
 			double cam_dist);
 void	fdf_projection_translate(t_vec3 *v, double x, double y, double z);
 void	fdf_projection_scale(t_vec3 *v, double factor);
+void	fdf_projection_rotate(t_img *img, double angle);
 
 #endif

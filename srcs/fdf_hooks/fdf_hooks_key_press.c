@@ -6,7 +6,7 @@
 /*   By: myeow <myeow@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 23:00:20 by myeow             #+#    #+#             */
-/*   Updated: 2024/08/22 00:33:50 by myeow            ###   ########.fr       */
+/*   Updated: 2024/08/22 16:09:11 by myeow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,10 @@ static void	hook_arrow_keys_to_scale(int code, t_mlx_vars *vars)
 		map->z_scale_val -= 0.1;
 	if (code == KEY_ARROW_UP)
 		map->z_scale_val += 0.1;
+	if (code == KEY_Q)
+		fdf_projection_rotate(image, -0.1);
+	if (code == KEY_E)
+		fdf_projection_rotate(image, 0.1);
 	fdf_draw_image(vars);
 }
 

@@ -36,8 +36,8 @@ SRC_M			=	\
 					fdf/fdf										\
 					fdf/fdf_error_exit							\
 					fdf/fdf_parse								\
+					fdf/fdf_parse_is_valid_value				\
 					fdf_map/fdf_map_init						\
-					fdf_map/fdf_map_cpy							\
 					fdf_map/fdf_map_print						\
 					fdf_hooks/fdf_hooks_key_press				\
 					fdf_hooks/fdf_hooks_key_release				\
@@ -52,6 +52,11 @@ SRC_M			=	\
 					fdf_projection/fdf_projection_perspective	\
 					fdf_projection/fdf_projection_translate		\
 					fdf_projection/fdf_projection_scale			\
+					fdf_projection/fdf_projection_rotate		\
+					fdf_animation/fdf_animation					\
+					fdf_animation/fdf_animation_isometric		\
+					fdf_animation/fdf_animation_perspective		\
+					fdf_animation/fdf_animation_top				\
 
 SRCS			=	$(addsuffix .c, $(addprefix $(SRCDIR), $(SRC_M)))
 
@@ -72,7 +77,7 @@ OBJDIRS			=	$(sort $(dir $(OBJS)))
 NAME			=	FdF
 CC				=	cc
 CFLAGS			=	-Wall -Wextra -Werror$(if $(FSANITIZE), $(FSANITIZE))
-FSANITIZE		=	-fsanitize=address -g
+#FSANITIZE		=	-fsanitize=address -g
 
 IFLAGS			=	$(HDRINC) $(LIBFTINC) $(MLXINC)
 LFLAGS			=	$(LIBFTLD) $(MLXLD)
