@@ -12,8 +12,8 @@ ifeq ($(UNAME), Linux)
 	MLXDIR		=	mlx_linux
 	MLXLD		=	-lmlx -L$(MLXDIR) -lXext -lX11 -lm -lz
 else
-	MLXDIR		=	mlx
-	MLXLD		=	-l$(MLXDIR) -framework OpenGL -framework AppKit
+	MLXDIR		=	mlx_macos
+	MLXLD		=	-lmlx -L$(MLXDIR) -framework OpenGL -framework AppKit
 endif
 
 MLXINC			=	-I$(MLXDIR)

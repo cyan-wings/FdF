@@ -6,7 +6,7 @@
 /*   By: myeow <myeow@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 16:48:11 by myeow             #+#    #+#             */
-/*   Updated: 2024/08/22 17:00:42 by myeow            ###   ########.fr       */
+/*   Updated: 2024/08/23 16:14:04 by myeow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,6 @@ typedef struct s_image_data
 	int		endian;
 	int		x_origin_offset;
 	int		y_origin_offset;
-	int		curr_color;
 	double	focal_len;
 	int		skip;
 	t_map	*map;
