@@ -1,7 +1,7 @@
 # FdF
 
 <p align="center">
-  <img src="https://github.com/cyan-wings/libft/blob/main/fdf.png" alt="libft 42 project badge"/>
+  <img src="https://github.com/cyan-wings/FdF/blob/main/fdf.png" alt="FDF 42 project badge"/>
 </p>
 
 FDF is short for ’fil de fer’ in French which means ’wireframe model’. FdF offers to represent “iron wire” meshing in 3D.
