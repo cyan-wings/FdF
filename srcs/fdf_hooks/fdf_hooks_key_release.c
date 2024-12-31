@@ -10,7 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "keys_macos.h"
+#ifdef __APPLE__
+# include "keys_macos.h"
+#elif defined(__linux__)
+# include "keys_linux.h"
+#else
+# error "Test"
+#endif
 #include "fdf.h"
 
 void	fdf_animation_isometric(t_proj *pj);

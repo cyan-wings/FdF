@@ -54,20 +54,20 @@
 #  define KEY_8 56
 #  define KEY_9 57
 
-#  define KEY_LEFT 65361
-#  define KEY_RIGHT 65363
-#  define KEY_UP 65362
-#  define KEY_DOWN 65364
+#  define KEY_ARROW_LEFT 65361
+#  define KEY_ARROW_RIGHT 65363
+#  define KEY_ARROW_UP 65362
+#  define KEY_ARROW_DOWN 65364
 
-#  define KEY_SP 32
+#  define KEY_SPACE 32
 #  define KEY_ESC 65307
 #  define KEY_TAB 65289
 
-#  define M_CLK_L 1
-#  define M_CLK_R 3
-#  define M_CLK_M 2
-#  define M_SCR_U 4
-#  define M_SCR_D 5
+#  define MOUSE_LEFT 1
+#  define MOUSE_RIGHT 3
+#  define MOUSE_MID 2
+#  define MOUSE_SCRUP 4
+#  define MOUSE_SCRDN 5
 
 # endif
 #endif

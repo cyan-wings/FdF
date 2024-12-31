@@ -10,7 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "keys_macos.h"
+#ifdef __APPLE__
+# include "keys_macos.h"
+#elif defined(__linux__)
+# include "keys_linux.h"
+#else
+# error "Test"
+#endif
 #include "fdf.h"
 
 static void	hook_wasd_to_translate(int code, t_mlx_vars *vars)
