@@ -92,7 +92,7 @@ The following is an example of a .fdf file we use as an input for our program:
 
 which yields
 
-<img width="1236" alt="Fdf example" src="">
+<img width="1236" alt="Fdf example" src="https://github.com/cyan-wings/FdF/blob/main/sample.png">
 
 
 Special TODOs for the future:
