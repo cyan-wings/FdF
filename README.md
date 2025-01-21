@@ -20,7 +20,7 @@ FdF renders an input file with a grid of height values into a 3D wireframe model
 <b>Project fulfills mandatory requirements and bonus requirements + some add ons!</b>
 
 ### Rendering:
-- Custom Math library (refer libft/includes/ft_math_utils)
+- Custom Math library (refer [libft/includes/ft_math_utils.h](https://github.com/cyan-wings/FdF/blob/main/libft/includes/ft_math_utils.h))
 - Orientation of model is represented using quaternions
 - Lines drawn using Xiaolin Wu's line algorithm for antialiasing
 - Simple animations when changing projections using quaternion slerp
