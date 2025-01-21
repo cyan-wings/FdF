@@ -16,6 +16,7 @@ else
 	MLXLD		=	-lmlx -L$(MLXDIR) -framework OpenGL -framework AppKit
 endif
 
+MLX			=	$(MLXDIR)/libmlx.a
 MLXINC			=	-I$(MLXDIR)
 
 
@@ -99,11 +100,14 @@ all: $(NAME)
 
 bonus: all
 
-$(NAME): $(LIBFT) $(OBJDIRS) $(OBJS)
+$(NAME): $(LIBFT) $(MLX) $(OBJDIRS) $(OBJS)
 	$(CC) $(CFLAGS) $(IFLAGS) -o $@ $(OBJS) $(LFLAGS)
 
 $(LIBFT):
 	$(MAKE_C) $(LIBFTDIR)
+
+$(MLX):
+	$(MAKE_C) $(MLXDIR)
 
 $(OBJDIRS):
 	mkdir -p $@
@@ -115,6 +119,7 @@ clean:
 	$(RM) $(OBJDIR)
 	$(RM) .DS_Store
 	$(MAKE_C) $(LIBFTDIR) $@
+	$(MAKE_C) $(MLXDIR) $@
 
 fclean: clean
 	$(RM) $(NAME)
