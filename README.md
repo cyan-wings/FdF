@@ -17,6 +17,8 @@ FdF renders an input file with a grid of height values into a 3D wireframe model
 
 ## Features
 
+<b>Project fulfills mandatory requirements and bonus requirements + some add ons!</b>
+
 ### Rendering:
 - Custom Math library (refer libft/includes/ft_math_utils)
 - Orientation of model is represented using quaternions
@@ -93,10 +95,10 @@ which yields
 <img width="1236" alt="Fdf example" src="">
 
 
-TODOs:
-1. Reset button back to isometric projection.
+Special TODOs for the future:
+1. Reset button back to the original starting projection.
 2. Fix color linear interpolation bug due to Xiaolin Wu's algorithm point swapping.
 3. Implement HSV color interpolation instead of the current RGB.
-4. Create mouse hooks especially scrolling.
-5. Implement rotations on x and y axis or other axis.
+4. Create some mouse hooks especially scrolling.
+5. Implement rotations on x and y axis or other axis planes.
 6. Implement a function to change the default color in the program.
