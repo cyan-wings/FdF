@@ -46,7 +46,7 @@ FdF currently works on all UNIX based systems (i.e., macOS, Linux, WSL).
 
 For Linux or WSL
 ```
-sudo apt install libx11-dev libxext-dev zlib1g-dev
+sudo apt install libx11-dev libxext-dev zlib1g-dev libbsd-dev
 ```
 
 For macOS:
