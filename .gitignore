@@ -5,3 +5,5 @@ objs/*
 *.o
 FdF
 *.a
+mlx_linux/libmlx_Linux.a
+mlx_linux/test/mlx-test
