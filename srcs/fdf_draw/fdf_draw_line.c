@@ -42,6 +42,7 @@ static void	init_draw_line(t_draw_line *info, t_point *a, t_point *b)
 	{
 		ft_swap(&info->x0, &info->x1);
 		ft_swap(&info->y0, &info->y1);
+		ft_swap((double *)&info->color0, (double *)&info->color1);
 	}
 	info->dx = info->x1 - info->x0;
 	info->dy = info->y1 - info->y0;

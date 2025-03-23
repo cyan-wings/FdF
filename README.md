@@ -97,8 +97,7 @@ which yields
 
 Special TODOs for the future:
 1. Reset button back to the original starting projection.
-2. Fix color linear interpolation bug due to Xiaolin Wu's algorithm point swapping.
-3. Implement HSV color interpolation instead of the current RGB.
-4. Create some mouse hooks especially scrolling.
-5. Implement rotations on x and y axis or other axis planes.
-6. Implement a function to change the default color in the program.
+2. Implement HSV color interpolation instead of the current RGB.
+3. Create some mouse hooks especially scrolling.
+4. Implement rotations on x and y axis or other axis planes.
+5. Implement a function to change the default color in the program.
